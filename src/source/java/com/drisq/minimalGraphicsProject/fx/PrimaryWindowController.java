@@ -25,7 +25,7 @@ public class PrimaryWindowController {
 
 	@FXML
 	private void initialize() {
-
+//Sets the fonts to be the required Verdana
 		_passwordLabel.setFont(new Font("Verdana", 13));
 		_enterPasswordButton.setFont(new Font("Verdana", 13));
 
@@ -33,9 +33,13 @@ public class PrimaryWindowController {
 
 	@FXML
 	private void _launchEnterPasswordButton() {
+		// retrieves the text input by the user
 		String passwordInput = _passwordInputField.getText();
+		// sets the password
 		String password = "a";
+		// checks to see if the users input matches the password
 		if (passwordInput.equals(password)) {
+			// if it does, then open the home page
 			Window owner = _rootNode.getScene().getWindow();
 			HomePageController controller = HomePageController.newInstance(owner, "Home Page");
 			((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
@@ -44,7 +48,7 @@ public class PrimaryWindowController {
 
 			}
 		} else {
-			System.out.println("Please Try again");
+			// if the passwords do not match, open an incorrect password pop up
 			Window owner = _rootNode.getScene().getWindow();
 			IncorrectPasswordController controller = IncorrectPasswordController.newInstance(owner,
 					"Incorrect Password");

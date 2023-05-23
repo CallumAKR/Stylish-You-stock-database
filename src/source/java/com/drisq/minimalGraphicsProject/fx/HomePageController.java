@@ -18,6 +18,15 @@ public class HomePageController implements DrisqController {
 	@FXML
 	private Button _homePageExitButton;
 
+	@FXML
+	private Button _mensButton;
+
+	@FXML
+	private Button _brandsButton;
+
+	@FXML
+	private Button _productTypeButton;
+
 	private boolean updateOnExit;
 
 	public static HomePageController newInstance(Window owner, String title) {
@@ -28,6 +37,39 @@ public class HomePageController implements DrisqController {
 	@Override
 	public Node getRootNode() {
 		return _rootNode;
+	}
+
+	@FXML
+	private void _launchMensButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		MensSearchController controller = MensSearchController.newInstance(owner, "Mens Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+	}
+
+	@FXML
+	private void _launchBrandsButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		BrandsSearchController controller = BrandsSearchController.newInstance(owner, "Brands Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+	}
+
+	@FXML
+	private void _launchProductTypeButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		ProductTypeSearchController controller = ProductTypeSearchController.newInstance(owner, "Brands Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
 	}
 
 	public boolean updateOnExit() {

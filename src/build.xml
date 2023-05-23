@@ -9,7 +9,8 @@
   <property name="third-party.dir" location="third-party" />
   <property name="filter-runner.dir" location="${third-party.dir}/filter-runner" />
   <property name="filter-runner.jar" location="${filter-runner.dir}/filter-runner.jar" />
-
+ <property name="sqlite.dir" location="${third-party.dir}/sqlite" />
+  <property name="sqlite.jar" location="/opt/managed/devel/SQLite/sqlite-jdbc-3.39.4.0/sqlite-jdbc-3.39.4.0.jar" />
   <path id="app.source.path.id">
     <pathelement path="${source.java}" />
   </path>
@@ -69,7 +70,13 @@
       <manifest>
         <attribute name="Main-Class" value="${main.class}" />
         <attribute name="Class-Path" value="${jar.name}" />
+	<attribute name="Class-Path" value="lib/sqlite.jar" />
+
       </manifest>
     </jar>
+    <copy tofile="dist/lib/sqlite.jar" file="${sqlite.jar}" />
+    <copy todir="dist/db">
+      <fileset dir="source/db" includes="*.sqlite" />
+    </copy>
   </target>
 </project>

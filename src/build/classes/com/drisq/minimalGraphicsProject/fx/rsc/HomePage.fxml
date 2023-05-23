@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.1"
@@ -16,10 +18,117 @@
       </controller>
    </properties>
    <children>
-      <Label text="Test"/>
-      <Button fx:id="_homePageExitButton"
-              mnemonicParsing="false"
-              onAction="#_launchHomePageExitButton"
-              text="Exit"/>
+      <HBox prefHeight="57.0" prefWidth="600.0"/>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="_mensButton"
+                    mnemonicParsing="false"
+                    onAction="#_launchMensButton"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Mens">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="100.0"
+                       prefWidth="150.0"/>
+            <Button mnemonicParsing="false"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Ladies">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Boys">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="100.0"
+                       prefWidth="150.0"/>
+            <Button mnemonicParsing="false"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Girls">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="_brandsButton"
+                    mnemonicParsing="false"
+                    onAction="#_launchBrandsButton"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Brand">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="100.0"
+                       prefWidth="150.0"/>
+            <Button fx:id="_productTypeButton"
+                    mnemonicParsing="false"
+                    onAction="#_launchProductTypeButton"
+                    prefHeight="100.0"
+                    prefWidth="100.0"
+                    text="Product Type">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="_homePageExitButton"
+                    mnemonicParsing="false"
+                    onAction="#_launchHomePageExitButton"
+                    text="Exit">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </padding>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>

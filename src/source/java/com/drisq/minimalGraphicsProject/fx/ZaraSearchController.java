@@ -1,7 +1,5 @@
 package com.drisq.minimalGraphicsProject.fx;
 
-import java.sql.SQLException;
-
 import com.drisq.util.fx.DrisqController;
 import com.drisq.util.fx.FxUtil;
 
@@ -17,13 +15,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class MensSearchController implements DrisqController {
+public class ZaraSearchController implements DrisqController {
 
-	public static final String FXML_RSC = "rsc/MensSearch.fxml";
+	public static final String FXML_RSC = "rsc/ZaraSearch.fxml";
+
+	ObservableList<String> genderType = FXCollections.observableArrayList("Any", "Mens", "Ladies", "Boys", "Girls");
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shorts", "Sweatshirts", "Tracksuit Bottoms",
-			"Tracksuits", "Trousers", "T-Shirts");
+			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
@@ -33,10 +33,11 @@ public class MensSearchController implements DrisqController {
 	ObservableList<String> colourType = FXCollections.observableArrayList("Any", "Beige", "Black", "Blue", "Green",
 			"Grey", "Multi", "Orange", "Pink", "Purple", "Red", "Silver", "White");
 
-	ObservableList<String> brandType = FXCollections.observableArrayList("Any", "Jack Wills", "Hollister", "Zara");
-
 	@FXML
 	private Node _rootNode;
+
+	@FXML
+	private ChoiceBox _genderChoiceBox;
 
 	@FXML
 	private ChoiceBox _productChoiceBox;
@@ -48,9 +49,6 @@ public class MensSearchController implements DrisqController {
 	private ChoiceBox _colourChoiceBox;
 
 	@FXML
-	private ChoiceBox _brandChoiceBox;
-
-	@FXML
 	private TextField _minPriceTextField;
 
 	@FXML
@@ -60,9 +58,6 @@ public class MensSearchController implements DrisqController {
 	private Button _homeButton;
 
 	@FXML
-	private Label _testLabel;
-
-	@FXML
 	private Button _findButton;
 
 	@FXML
@@ -70,9 +65,9 @@ public class MensSearchController implements DrisqController {
 
 	private boolean updateOnExit;
 
-	public static MensSearchController newInstance(Window owner, String title) {
-		Stage stage = FxUtil.newStage(owner, FXML_RSC, MensSearchController.class, title);
-		return (MensSearchController) FxUtil.getController(stage.getScene().getRoot());
+	public static ZaraSearchController newInstance(Window owner, String title) {
+		Stage stage = FxUtil.newStage(owner, FXML_RSC, ZaraSearchController.class, title);
+		return (ZaraSearchController) FxUtil.getController(stage.getScene().getRoot());
 	}
 
 	@Override
@@ -92,8 +87,8 @@ public class MensSearchController implements DrisqController {
 		_colourChoiceBox.setValue("Any");
 		_colourChoiceBox.setItems(colourType);
 
-		_brandChoiceBox.setValue("Any");
-		_brandChoiceBox.setItems(brandType);
+		_genderChoiceBox.setValue("Any");
+		_genderChoiceBox.setItems(genderType);
 
 	}
 
@@ -115,76 +110,37 @@ public class MensSearchController implements DrisqController {
 		return colourSelection;
 	}
 
-	public String getBrandType(ActionEvent event) {
+	public String getGenderType(ActionEvent event) {
 
-		String brandSelection = String.valueOf(_brandChoiceBox.getSelectionModel().getSelectedItem());
-		return brandSelection;
+		String genderSelection = String.valueOf(_genderChoiceBox.getSelectionModel().getSelectedItem());
+		return genderSelection;
 	}
 
 	@FXML
-	private String _launchFindButton() {
+	private void _launchFindButton() {
 
 		getProductType(null);
 		getSizeType(null);
 		getColourType(null);
-		getBrandType(null);
-
-		String anyCheck = "= 'Any'";
+		getGenderType(null);
 
 		ActionEvent productSelection = null;
-		String productQuery = "= '" + getProductType(productSelection) + "'";
-		if (productQuery.equals(anyCheck)) {
-			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
-		}
+		String productQuery = getProductType(productSelection);
 
 		ActionEvent sizeSelection = null;
-		String sizeQuery = "= '" + getSizeType(sizeSelection) + "'";
-		if (sizeQuery.equals(anyCheck)) {
-			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL')";
-
-		}
+		String sizeQuery = getSizeType(sizeSelection);
 
 		ActionEvent colourSelection = null;
-		String colourQuery = "= '" + getColourType(colourSelection) + "'";
-		if (colourQuery.equals(anyCheck)) {
-			colourQuery = "IN ('Beige', 'Black', 'Blue', 'Green', 'Grey', 'Multi', 'Orange', 'Pink', 'Purple', 'Red', 'Silver', 'White')";
+		String colourQuery = getColourType(colourSelection);
 
-		}
+		ActionEvent genderSelection = null;
+		String genderQuery = getGenderType(genderSelection);
 
-		ActionEvent brandsSelection = null;
-		String brandsQuery = "= '" + getBrandType(brandsSelection) + "'";
-		if (brandsQuery.equals(anyCheck)) {
-			brandsQuery = "IN ('Jack Wills', 'Hollister', 'Zara')";
+		String Query = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] = "
+				+ productQuery + " AND Sizes = " + sizeQuery + " AND Colour = " + colourQuery + " AND Brands = "
+				+ genderQuery);
 
-		}
-
-		String mensQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] "
-				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Brands " + brandsQuery
-				+ "AND Gender = 'Male'");
-
-		Window owner = _rootNode.getScene().getWindow();
-		MensTableController controller = MensTableController.newInstance(owner, "Mens Table");
-		try {
-			controller.initMensTable(mensQuery);
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		Runnable runnable = new Runnable() {
-
-			@Override
-			public void run() {
-				done();
-
-			}
-		};
-		controller.initRunnable(runnable);
-		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
-		if (controller.updateOnExit()) {
-
-		}
-
-		return mensQuery;
+		System.out.println("here: " + Query);
 
 	}
 
@@ -195,7 +151,6 @@ public class MensSearchController implements DrisqController {
 	@FXML
 	protected final void _launchHomeButton() {
 		updateOnExit = false;
-
 		done();
 	}
 

@@ -15,10 +15,9 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:id="_rootNode"
       alignment="CENTER"
-      maxHeight="-Infinity"
       prefHeight="1000.0"
       prefWidth="1000.0"
-      fx:controller="com.drisq.minimalGraphicsProject.fx.MensSearchController">
+      fx:controller="com.drisq.minimalGraphicsProject.fx.JackWillsSearchController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>
          <fx:reference source="controller"/>
@@ -30,7 +29,7 @@
                  pickOnBounds="true"
                  preserveRatio="true">
          <image>
-            <Image url="@StylishYou_Logo_Green.png"/>
+            <Image url="@StylishYouMainLogo.png"/>
          </image>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
@@ -41,10 +40,21 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="_testLabel"
-                   alignment="CENTER_RIGHT"
-                   prefWidth="100.0"
-                   text="Product Type:"/>
+            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Gender:"/>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
+            <ChoiceBox fx:id="_genderChoiceBox" prefWidth="150.0"/>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="200.0"
+                       prefWidth="100.0"/>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER"
+            prefHeight="100.0"
+            prefWidth="200.0"
+            VBox.vgrow="ALWAYS">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Product Type:"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
             <ChoiceBox fx:id="_productChoiceBox" prefWidth="150.0"/>
             <Separator opacity="0.0"
@@ -86,29 +96,15 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="_minPriceTextField" promptText="Price Min" text="1"/>
+            <TextField fx:id="_minPriceTextField" promptText="Price Min"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
-            <TextField fx:id="_maxPriceTestField" promptText="Price Max" text="100"/>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER"
-            prefHeight="100.0"
-            prefWidth="200.0"
-            VBox.vgrow="ALWAYS">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Brand:"/>
-            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
-            <ChoiceBox fx:id="_brandChoiceBox" prefWidth="150.0"/>
-            <Separator opacity="0.0"
-                       orientation="VERTICAL"
-                       prefHeight="200.0"
-                       prefWidth="100.0"/>
+            <TextField fx:id="_maxPriceTestField" promptText="Price Max"/>
          </children>
       </HBox>
       <Button fx:id="_findButton"
               mnemonicParsing="false"
               onAction="#_launchFindButton"
-              text="Find"
+              text="FInd"
               VBox.vgrow="ALWAYS"/>
       <Separator opacity="0.0" prefWidth="200.0"/>
       <Button fx:id="_homeButton"

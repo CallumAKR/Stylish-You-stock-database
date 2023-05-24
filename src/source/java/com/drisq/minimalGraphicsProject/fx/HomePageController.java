@@ -96,7 +96,7 @@ public class HomePageController implements DrisqController {
 	private void _launchBrandsButton() {
 
 		Window owner = _rootNode.getScene().getWindow();
-		BrandsSearchController controller = BrandsSearchController.newInstance(owner, "Brands Search");
+		BrandsSelectController controller = BrandsSelectController.newInstance(owner, "Brands Search");
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 

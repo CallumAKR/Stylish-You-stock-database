@@ -11,8 +11,8 @@
 <VBox xmlns="http://javafx.com/javafx/17.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:id="_rootNode"
-      prefHeight="800.0"
-      prefWidth="800.0"
+      prefHeight="1000.0"
+      prefWidth="1000.0"
       fx:controller="com.drisq.minimalGraphicsProject.fx.HomePageController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>

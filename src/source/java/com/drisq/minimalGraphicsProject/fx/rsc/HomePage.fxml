@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.HomePageController">
+<VBox fx:id="_rootNode" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.HomePageController">
    <children>
       <HBox alignment="CENTER" prefHeight="57.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <children>

@@ -9,6 +9,7 @@ import com.drisq.util.fx.FxUtil;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -23,10 +24,16 @@ public class MensTableController implements DrisqController {
 	private javafx.scene.control.TableView<TableRowMens> _mensTable;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensItemCode;
+	private TableColumn<TableRowMens, String> _mensProductDescriptionColumn;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensGender;
+	private TableColumn<TableRowMens, String> _mensBrandColumn;
+
+	@FXML
+	private TableColumn<TableRowMens, String> _mensQuantityColumn;
+
+	@FXML
+	private TableColumn<TableRowMens, String> _mensAvailableColumn;
 
 	private boolean updateOnExit;
 
@@ -43,27 +50,36 @@ public class MensTableController implements DrisqController {
 	@FXML
 	private void initialize() throws SQLException {
 
-		initMensTable();
-
 	}
 
-	private void initMensTable() throws SQLException {
+	public void initMensTable(String mensQuery) throws SQLException {
 
-		ResultSet mensTables = Database.testQuery();
-		StringBuilder mensTable = new StringBuilder();
+		_mensTable.getItems().clear();
+		_mensProductDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("productDescriptionText"));
+		_mensBrandColumn.setCellValueFactory(new PropertyValueFactory<>("brandsText"));
+		_mensQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantityText"));
+		_mensAvailableColumn.setCellValueFactory(new PropertyValueFactory<>("availableText"));
+
+		ResultSet mensDataSet = Database.mensQuery(mensQuery);
+		StringBuilder mensDataString = new StringBuilder();
 
 		try {
-
-			while (mensTables.next()) {
-				mensTable.append(mensTables.getInt("Item Code"));
-				mensTable.append(mensTables.getString("Gender"));
-				TableRowMens row = new TableRowMens(mensTables.getString("Item Code"), mensTables.getString("Gender"));
+			while (mensDataSet.next()) {
+				mensDataString.append(mensDataSet.getString("Product Description"));
+				mensDataString.append(mensDataSet.getString("Brands"));
+				mensDataString.append(mensDataSet.getString("Quantity"));
+				mensDataString.append(mensDataSet.getString("Available"));
+				TableRowMens row = new TableRowMens(mensDataSet.getString("Product Description"),
+						mensDataSet.getString("Brands"), mensDataSet.getString("Quantity"),
+						mensDataSet.getString("Available"));
 				_mensTable.getItems().add(row);
 			}
-
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new InternalError("Unable to extract from result set.");
+
 		}
+
 	}
 
 	public boolean updateOnExit() {

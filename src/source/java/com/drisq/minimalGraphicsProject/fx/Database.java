@@ -54,21 +54,19 @@ public class Database {
 
 	}
 
-	public static ResultSet testQuery() {
-
-		String tableQuery = ("SELECT [Item Code], Gender FROM OurProducts WHERE [Item Code] = 1");
+	public static ResultSet mensQuery(String mensQuery) {
 
 		try {
 			connection = getConnection();
 
-			PreparedStatement statement = connection.prepareStatement(tableQuery);
+			PreparedStatement statement = connection.prepareStatement(mensQuery);
 
 			ResultSet testSet = statement.executeQuery();
 
 			return testSet;
 
 		} catch (SQLException e) {
-			throw new InternalError("Cannot execute queries : " + tableQuery);
+			throw new InternalError("Cannot execute queries : " + mensQuery);
 		}
 
 	}

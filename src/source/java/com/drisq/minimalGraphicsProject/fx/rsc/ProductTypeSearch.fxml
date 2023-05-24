@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" alignment="CENTER" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.ProductTypeSearchController">
+<VBox fx:id="_rootNode" alignment="CENTER" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.ProductTypeSearchController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
          <VBox.margin>
@@ -58,14 +58,6 @@
             <TextField fx:id="_minPriceTextField" promptText="Price Min" />
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
             <TextField fx:id="_maxPriceTestField" promptText="Price Max" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Brand:" HBox.hgrow="ALWAYS" />
-            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
-            <ChoiceBox fx:id="_brandChoiceBox" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="100.0" />
          </children>
       </HBox>
       <Button fx:id="_findButton" mnemonicParsing="false" onAction="#_launchFindButton" text="FInd" VBox.vgrow="ALWAYS" />

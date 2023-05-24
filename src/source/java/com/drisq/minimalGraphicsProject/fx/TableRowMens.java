@@ -2,23 +2,39 @@ package com.drisq.minimalGraphicsProject.fx;
 
 public class TableRowMens {
 
-	public String ItemCode;
+	public String ProductDescription;
 
-	public String Gender;
+	public String Brands;
 
-	public TableRowMens(String ItemCode, String Gender) {
+	public String Quantity;
 
-		this.ItemCode = ItemCode;
-		this.Gender = Gender;
+	public String Available;
+
+	public TableRowMens(String ProductDescription, String Brands, String Quantity, String Available) {
+
+		this.ProductDescription = ProductDescription;
+		this.Brands = Brands;
+		this.Quantity = Quantity;
+		this.Available = Available;
 
 	}
 
-	public String getItemCodeText() {
-		return ItemCode;
+	public String getProductDescriptionText() {
+		return ProductDescription;
 	}
 
-	public String getGenderText() {
-		return Gender;
+	public String getBrandsText() {
+		return Brands;
+
+	}
+
+	public String getQuantityText() {
+		return Quantity;
+
+	}
+
+	public String getAvailableText() {
+		return Available;
 
 	}
 

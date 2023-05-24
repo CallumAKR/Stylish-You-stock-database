@@ -1,5 +1,7 @@
 package com.drisq.minimalGraphicsProject.fx;
 
+import java.sql.SQLException;
+
 import com.drisq.util.fx.DrisqController;
 import com.drisq.util.fx.FxUtil;
 
@@ -120,7 +122,7 @@ public class MensSearchController implements DrisqController {
 	}
 
 	@FXML
-	private void _launchFindButton() {
+	private String _launchFindButton() {
 		getProductType(null);
 		getSizeType(null);
 		getColourType(null);
@@ -138,11 +140,23 @@ public class MensSearchController implements DrisqController {
 		ActionEvent brandsSelection = null;
 		String brandsQuery = getBrandType(brandsSelection);
 
-		String Query = ("SELECT [Product Description], Brands, Quantity, Location FROM OurProducts WHERE [Product Type] = "
-				+ productQuery + " AND Sizes = " + sizeQuery + " AND Colour = " + colourQuery + " AND Brands = "
-				+ brandsQuery);
+		String mensQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] = '"
+				+ productQuery + "' AND Sizes = '" + sizeQuery + "' AND Colour = '" + colourQuery + "' AND Brands = '"
+				+ brandsQuery + "'");
 
-		System.out.println("here: " + Query);
+		Window owner = _rootNode.getScene().getWindow();
+		MensTableController controller = MensTableController.newInstance(owner, "Mens Table");
+		try {
+			controller.initMensTable(mensQuery);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+		return mensQuery;
 
 	}
 

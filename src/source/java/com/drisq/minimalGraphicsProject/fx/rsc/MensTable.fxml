@@ -4,14 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
+<VBox fx:id="_rootNode" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
    <children>
       <TableView fx:id="_mensTable" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="_mensProductDescriptionColumn" prefWidth="150.0" text="Product Description" />
-          <TableColumn fx:id="_mensBrandColumn" minWidth="0.0" prefWidth="163.0" text="Brand" />
-            <TableColumn fx:id="_mensQuantityColumn" minWidth="0.0" prefWidth="145.0" text="Qty" />
-            <TableColumn fx:id="_mensAvailableColumn" prefWidth="141.0" text="Available in store" />
+          <TableColumn fx:id="_mensProductDescriptionColumn" prefWidth="250.0" text="Product Description" />
+          <TableColumn fx:id="_mensBrandColumn" minWidth="0.0" prefWidth="250.0" text="Brand" />
+            <TableColumn fx:id="_mensQuantityColumn" minWidth="0.0" prefWidth="250.0" text="Qty" />
+            <TableColumn fx:id="_mensAvailableColumn" prefWidth="250.0" text="Available in store" />
         </columns>
       </TableView>
    </children>

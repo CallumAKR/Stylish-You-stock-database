@@ -138,7 +138,7 @@ public class GirlsSearchController implements DrisqController {
 		ActionEvent brandsSelection = null;
 		String brandsQuery = getBrandType(brandsSelection);
 
-		String Query = ("SELECT [Product Description], Brands, Quantity, Location FROM OurProducts WHERE [Product Type] = "
+		String Query = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] = "
 				+ productQuery + " AND Sizes = " + sizeQuery + " AND Colour = " + colourQuery + " AND Brands = "
 				+ brandsQuery);
 

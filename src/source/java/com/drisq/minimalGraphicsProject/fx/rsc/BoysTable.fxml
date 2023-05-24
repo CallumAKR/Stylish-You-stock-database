@@ -4,9 +4,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.BoysTableController">
+<VBox fx:id="_rootNode" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.BoysTableController">
    <children>
-      <TableView fx:id="_mensTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="_mensTable" prefHeight="934.0" prefWidth="1000.0">
         <columns>
           <TableColumn fx:id="_mensProductDescriptionColumn" prefWidth="150.0" text="Product Description" />
           <TableColumn fx:id="_mensBrandColumn" minWidth="0.0" prefWidth="163.0" text="Brand" />

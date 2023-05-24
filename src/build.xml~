@@ -28,13 +28,17 @@
       </src>
     </javac>
     <copy toDir="${build.classes}">
-      <fileset dir="source/java" includes="**/*.css, **/*.png" />
+      <fileset dir="source/java" includes="**/*.css" />
     </copy>
     <mkdir dir="${build.classes}/fonts" />
     <copy todir="${build.classes}/fonts">
       <fileset dir="third-party/fonts/525icons-5_4/fonts" includes="*.ttf" />
       <fileset dir="third-party/fonts/liberation-fonts-ttf-2.00.1" includes="*.ttf" />
     </copy>
+    <copy todir="%{build.classes}/images">
+      <fileset dir="source/images" includes="*.png" />
+    </copy>
+
   </target>
 
   <target name="copy-fxml">

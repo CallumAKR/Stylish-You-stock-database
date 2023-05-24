@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
@@ -16,20 +17,17 @@
       </controller>
    </properties>
    <children>
+      <Label text="Brand"/>
       <TableView fx:id="_mensTable" prefHeight="200.0" prefWidth="200.0">
         <columns>
-            <TableColumn fx:id="_mensProductDescriptionColumn"
+            <TableColumn fx:id="_brandsProductDescriptionColumn"
                          prefWidth="150.0"
                          text="Product Description"/>
-            <TableColumn fx:id="_mensBrandColumn"
-                         minWidth="0.0"
-                         prefWidth="163.0"
-                         text="Brand"/>
-            <TableColumn fx:id="_mensQuantityColumn"
+            <TableColumn fx:id="_brandsQuantityColumn"
                          minWidth="0.0"
                          prefWidth="145.0"
                          text="Qty"/>
-            <TableColumn fx:id="_mensAvailableColumn"
+            <TableColumn fx:id="_brandsAvailableColumn"
                          prefWidth="141.0"
                          text="Available in store"/>
         </columns>

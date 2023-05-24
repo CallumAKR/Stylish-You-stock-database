@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -19,6 +20,9 @@ public class PrimaryWindowController {
 
 	@FXML
 	private PasswordField _passwordInputField;
+
+	@FXML
+	private ImageView passwordScreenLogo;
 
 	@FXML
 	private Button _enterPasswordButton;

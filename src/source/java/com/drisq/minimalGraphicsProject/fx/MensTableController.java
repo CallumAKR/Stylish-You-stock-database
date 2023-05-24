@@ -9,7 +9,6 @@ import com.drisq.util.fx.FxUtil;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -50,27 +49,21 @@ public class MensTableController implements DrisqController {
 
 	private void initMensTable() throws SQLException {
 
-		_mensTable.getItems().clear();
-		_mensItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCodeText"));
-		_mensGender.setCellValueFactory(new PropertyValueFactory<>("genderText"));
-
-		ResultSet mensDatas = Database.testQuery();
-		StringBuilder mensData = new StringBuilder();
+		ResultSet mensTables = Database.testQuery();
+		StringBuilder mensTable = new StringBuilder();
 
 		try {
-			while (mensDatas.next()) {
-				mensData.append(mensDatas.getString("Item Code"));
-				mensData.append(mensDatas.getString("Gender"));
-				TableRowMens row = new TableRowMens(mensDatas.getString("Store ID"),
-						mensDatas.getString("Store Location"));
-				_mensTable.getItems().add(row);
 
+			while (mensTables.next()) {
+				mensTable.append(mensTables.getInt("Item Code"));
+				mensTable.append(mensTables.getString("Gender"));
+				TableRowMens row = new TableRowMens(mensTables.getString("Item Code"), mensTables.getString("Gender"));
+				_mensTable.getItems().add(row);
 			}
 
 		} catch (SQLException e) {
 			throw new InternalError("Unable to extract from result set.");
 		}
-
 	}
 
 	public boolean updateOnExit() {

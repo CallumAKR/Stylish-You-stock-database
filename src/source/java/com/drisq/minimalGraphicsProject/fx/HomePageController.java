@@ -22,6 +22,15 @@ public class HomePageController implements DrisqController {
 	private Button _mensButton;
 
 	@FXML
+	private Button _womensButton;
+
+	@FXML
+	private Button _boysButton;
+
+	@FXML
+	private Button _girlsButton;
+
+	@FXML
 	private Button _brandsButton;
 
 	@FXML
@@ -44,6 +53,39 @@ public class HomePageController implements DrisqController {
 
 		Window owner = _rootNode.getScene().getWindow();
 		MensSearchController controller = MensSearchController.newInstance(owner, "Mens Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+	}
+
+	@FXML
+	private void _launchWomensButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		WomensSearchController controller = WomensSearchController.newInstance(owner, "Ladies Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+	}
+
+	@FXML
+	private void _launchBoysButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		BoysSearchController controller = BoysSearchController.newInstance(owner, "Boys Search");
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+	}
+
+	@FXML
+	private void _launchGirlsButton() {
+
+		Window owner = _rootNode.getScene().getWindow();
+		GirlsSearchController controller = GirlsSearchController.newInstance(owner, "Girls Search");
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 

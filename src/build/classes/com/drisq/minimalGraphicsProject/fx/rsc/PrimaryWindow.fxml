@@ -15,8 +15,8 @@
       xmlns:fx="http://javafx.com/fxml/1"
       fx:id="_rootNode"
       alignment="CENTER"
-      prefHeight="400.0"
-      prefWidth="640.0"
+      prefHeight="800.0"
+      prefWidth="800.0"
       fx:controller="com.drisq.minimalGraphicsProject.fx.PrimaryWindowController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>
@@ -36,7 +36,10 @@
             <Image url="@StylishYouMainLogo.png"/>
          </image>
       </ImageView>
-      <HBox alignment="CENTER" prefHeight="414.0" prefWidth="640.0">
+      <HBox alignment="CENTER"
+            prefHeight="414.0"
+            prefWidth="640.0"
+            VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="_passwordLabel" text="Password: ">
                <font>

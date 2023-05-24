@@ -9,7 +9,7 @@
       fx:id="_rootNode"
       prefHeight="400.0"
       prefWidth="600.0"
-      fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
+      fx:controller="com.drisq.minimalGraphicsProject.fx.GirlsTableController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>
          <fx:reference source="controller"/>

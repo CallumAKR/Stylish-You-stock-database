@@ -70,4 +70,89 @@ public class Database {
 		}
 
 	}
+
+	public static ResultSet womensQuery(String womensQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(womensQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + womensQuery);
+		}
+
+	}
+
+	public static ResultSet boysQuery(String boysQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(boysQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + boysQuery);
+		}
+
+	}
+
+	public static ResultSet girlsQuery(String girlsQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(girlsQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + girlsQuery);
+		}
+
+	}
+
+	public static ResultSet brandsQuery(String brandsQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(brandsQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + brandsQuery);
+		}
+
+	}
+
+	public static ResultSet productsQuery(String productsQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(productsQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + productsQuery);
+		}
+
+	}
 }

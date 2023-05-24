@@ -8,6 +8,7 @@ import com.drisq.util.fx.FxUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -21,21 +22,29 @@ public class MensTableController implements DrisqController {
 	private Node _rootNode;
 
 	@FXML
-	private javafx.scene.control.TableView<TableRowMens> _mensTable;
+	private javafx.scene.control.TableView<TableRowGender> _mensTable;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensProductDescriptionColumn;
+	private TableColumn<TableRowGender, String> _mensProductDescriptionColumn;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensBrandColumn;
+	private TableColumn<TableRowGender, String> _mensBrandColumn;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensQuantityColumn;
+	private TableColumn<TableRowGender, String> _mensQuantityColumn;
 
 	@FXML
-	private TableColumn<TableRowMens, String> _mensAvailableColumn;
+	private TableColumn<TableRowGender, String> _mensAvailableColumn;
+
+	@FXML
+	private Button _homeButton;
+
+	@FXML
+	private Button _backButton;
 
 	private boolean updateOnExit;
+
+	private Runnable runnable;
 
 	public static MensTableController newInstance(Window owner, String title) {
 		Stage stage = FxUtil.newStage(owner, FXML_RSC, MensTableController.class, title);
@@ -69,7 +78,7 @@ public class MensTableController implements DrisqController {
 				mensDataString.append(mensDataSet.getString("Brands"));
 				mensDataString.append(mensDataSet.getString("Quantity"));
 				mensDataString.append(mensDataSet.getString("Available"));
-				TableRowMens row = new TableRowMens(mensDataSet.getString("Product Description"),
+				TableRowGender row = new TableRowGender(mensDataSet.getString("Product Description"),
 						mensDataSet.getString("Brands"), mensDataSet.getString("Quantity"),
 						mensDataSet.getString("Available"));
 				_mensTable.getItems().add(row);
@@ -87,8 +96,20 @@ public class MensTableController implements DrisqController {
 	}
 
 	@FXML
-	protected final void _launchExitButton() {
+	protected final void _launchBackButton() {
 		updateOnExit = false;
+		done();
+	}
+
+	public void initRunnable(Runnable runnable) {
+		this.runnable = runnable;
+
+	}
+
+	@FXML
+	protected final void _launchHomeButton() {
+		updateOnExit = false;
+		runnable.run();
 		done();
 	}
 

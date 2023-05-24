@@ -1,6 +1,6 @@
 package com.drisq.minimalGraphicsProject.fx;
 
-public class TableRowMens {
+public class TableRowGender {
 
 	public String ProductDescription;
 
@@ -10,7 +10,7 @@ public class TableRowMens {
 
 	public String Available;
 
-	public TableRowMens(String ProductDescription, String Brands, String Quantity, String Available) {
+	public TableRowGender(String ProductDescription, String Brands, String Quantity, String Available) {
 
 		this.ProductDescription = ProductDescription;
 		this.Brands = Brands;

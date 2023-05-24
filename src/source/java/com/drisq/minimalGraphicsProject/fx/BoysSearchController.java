@@ -1,5 +1,7 @@
 package com.drisq.minimalGraphicsProject.fx;
 
+import java.sql.SQLException;
+
 import com.drisq.util.fx.DrisqController;
 import com.drisq.util.fx.FxUtil;
 
@@ -20,8 +22,8 @@ public class BoysSearchController implements DrisqController {
 	public static final String FXML_RSC = "rsc/BoysSearch.fxml";
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
-			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
@@ -120,29 +122,68 @@ public class BoysSearchController implements DrisqController {
 	}
 
 	@FXML
-	private void _launchFindButton() {
+	private String _launchFindButton() {
 		getProductType(null);
 		getSizeType(null);
 		getColourType(null);
 		getBrandType(null);
 
+		String anyCheck = "= 'Any'";
+
 		ActionEvent productSelection = null;
-		String productQuery = getProductType(productSelection);
+		String productQuery = "= '" + getProductType(productSelection) + "'";
+		if (productQuery.equals(anyCheck)) {
+			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
+		}
 
 		ActionEvent sizeSelection = null;
-		String sizeQuery = getSizeType(sizeSelection);
+		String sizeQuery = "= '" + getSizeType(sizeSelection) + "'";
+		if (sizeQuery.equals(anyCheck)) {
+			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL')";
+
+		}
 
 		ActionEvent colourSelection = null;
-		String colourQuery = getColourType(colourSelection);
+		String colourQuery = "= '" + getColourType(colourSelection) + "'";
+		if (colourQuery.equals(anyCheck)) {
+			colourQuery = "IN ('Beige', 'Black', 'Blue', 'Green', 'Grey', 'Multi', 'Orange', 'Pink', 'Purple', 'Red', 'Silver', 'White')";
+
+		}
 
 		ActionEvent brandsSelection = null;
-		String brandsQuery = getBrandType(brandsSelection);
+		String brandsQuery = "= '" + getBrandType(brandsSelection) + "'";
+		if (brandsQuery.equals(anyCheck)) {
+			brandsQuery = "IN ('Jack Wills', 'Hollister', 'Zara')";
 
-		String Query = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] = "
-				+ productQuery + " AND Sizes = " + sizeQuery + " AND Colour = " + colourQuery + " AND Brands = "
-				+ brandsQuery);
+		}
 
-		System.out.println("here: " + Query);
+		String boysQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] "
+				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Brands " + brandsQuery
+				+ "AND Gender = 'Boys'");
+
+		Window owner = _rootNode.getScene().getWindow();
+		BoysTableController controller = BoysTableController.newInstance(owner, "Boys Table");
+		try {
+			controller.initBoysTable(boysQuery);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				done();
+
+			}
+		};
+		controller.initRunnable(runnable);
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+
+		return boysQuery;
 
 	}
 
@@ -153,6 +194,7 @@ public class BoysSearchController implements DrisqController {
 	@FXML
 	protected final void _launchHomeButton() {
 		updateOnExit = false;
+
 		done();
 	}
 

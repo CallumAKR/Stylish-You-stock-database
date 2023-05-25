@@ -21,7 +21,7 @@ public class GuiLauncher extends Application {
 		URL url = getClass().getResource(FXML_RSC);
 		Region root = FXMLLoader.load(url);
 		Scene scene = new Scene(root);
-		stage.setTitle("Test Window");
+		stage.setTitle("Password Window");
 		stage.setScene(scene);
 		stage.show();
 	}

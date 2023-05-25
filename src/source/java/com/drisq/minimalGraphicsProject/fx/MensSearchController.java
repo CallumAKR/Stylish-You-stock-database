@@ -223,6 +223,8 @@ public class MensSearchController implements DrisqController {
 			mensQuery += " AND Price <= '" + maxPrice + "'";
 		}
 
+		System.out.println(mensQuery);
+
 		// opens the Table controller
 
 		Window owner = _rootNode.getScene().getWindow();

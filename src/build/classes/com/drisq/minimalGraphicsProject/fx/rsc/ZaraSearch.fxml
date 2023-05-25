@@ -24,17 +24,33 @@
       </controller>
    </properties>
    <children>
-      <ImageView fitHeight="150.0"
-                 fitWidth="200.0"
-                 pickOnBounds="true"
-                 preserveRatio="true">
-         <image>
-            <Image url="@StylishYouMainLogo.png"/>
-         </image>
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-         </VBox.margin>
-      </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="170.0"
+                       prefWidth="196.0"/>
+            <ImageView fitHeight="150.0"
+                       fitWidth="200.0"
+                       pickOnBounds="true"
+                       preserveRatio="true">
+               <image>
+                  <Image url="@StylishYouMainLogo.png"/>
+               </image>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               </HBox.margin>
+            </ImageView>
+            <Separator opacity="0.0"
+                       orientation="VERTICAL"
+                       prefHeight="170.0"
+                       prefWidth="2.0"/>
+            <Label fx:id="_zaraLabel"
+                   prefHeight="150.0"
+                   prefWidth="200.0"
+                   text="Zara"/>
+         </children>
+      </HBox>
       <HBox alignment="CENTER"
             prefHeight="100.0"
             prefWidth="200.0"

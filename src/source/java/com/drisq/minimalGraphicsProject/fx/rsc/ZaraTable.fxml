@@ -25,7 +25,7 @@
                </HBox.margin>
             </ImageView>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="170.0" prefWidth="2.0" />
-            <Label prefHeight="150.0" prefWidth="200.0" text="Zara" />
+            <Label fx:id="_zaraLabel" prefHeight="150.0" prefWidth="200.0" text="Zara" />
          </children>
       </HBox>
       <TableView fx:id="_zaraTable" prefHeight="1000.0" prefWidth="1000.0">

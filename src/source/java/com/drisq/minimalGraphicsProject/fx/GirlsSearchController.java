@@ -197,6 +197,8 @@ public class GirlsSearchController implements DrisqController {
 			girlsQuery += " AND Price <= '" + maxPrice + "'";
 		}
 
+		System.out.println(girlsQuery);
+
 		Window owner = _rootNode.getScene().getWindow();
 		GirlsTableController controller = GirlsTableController.newInstance(owner, "Girls Table");
 		try {

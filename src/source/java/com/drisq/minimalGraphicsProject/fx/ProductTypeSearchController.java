@@ -242,6 +242,8 @@ public class ProductTypeSearchController implements DrisqController {
 			productTypeQuery += " AND Price <= '" + maxPrice + "'";
 		}
 
+		System.out.println(productTypeQuery);
+
 		Window owner = _rootNode.getScene().getWindow();
 		ProductTypeTableController controller = ProductTypeTableController.newInstance(owner, "Product Table");
 		try {

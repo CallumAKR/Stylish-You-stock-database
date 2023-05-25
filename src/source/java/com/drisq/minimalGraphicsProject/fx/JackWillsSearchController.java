@@ -77,6 +77,9 @@ public class JackWillsSearchController implements DrisqController {
 	private Label _productTypeLabel;
 
 	@FXML
+	private Label _jackWillsLabel;
+
+	@FXML
 	private Label _sizeLabel;
 
 	@FXML
@@ -108,6 +111,7 @@ public class JackWillsSearchController implements DrisqController {
 		_productTypeLabel.setFont(verdanaFont);
 		_sizeLabel.setFont(verdanaFont);
 		_colourLabel.setFont(verdanaFont);
+		_jackWillsLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -219,6 +223,8 @@ public class JackWillsSearchController implements DrisqController {
 		} else if (!maxPrice.isEmpty()) {
 			jackWillsQuery += " AND Price <= '" + maxPrice + "'";
 		}
+
+		System.out.println(jackWillsQuery);
 
 		Window owner = _rootNode.getScene().getWindow();
 		JackWillsTableController controller = JackWillsTableController.newInstance(owner, "Jack Wills Table");

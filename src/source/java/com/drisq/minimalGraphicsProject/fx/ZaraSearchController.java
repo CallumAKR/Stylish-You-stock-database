@@ -80,6 +80,9 @@ public class ZaraSearchController implements DrisqController {
 	private Label _sizeLabel;
 
 	@FXML
+	private Label _zaraLabel;
+
+	@FXML
 	private Label _colourLabel;
 
 	private boolean updateOnExit;
@@ -108,6 +111,7 @@ public class ZaraSearchController implements DrisqController {
 		_productTypeLabel.setFont(verdanaFont);
 		_sizeLabel.setFont(verdanaFont);
 		_colourLabel.setFont(verdanaFont);
+		_zaraLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -219,6 +223,8 @@ public class ZaraSearchController implements DrisqController {
 		} else if (!maxPrice.isEmpty()) {
 			zaraQuery += " AND Price <= '" + maxPrice + "'";
 		}
+
+		System.out.println(zaraQuery);
 
 		Window owner = _rootNode.getScene().getWindow();
 		ZaraTableController controller = ZaraTableController.newInstance(owner, "Zara Table");

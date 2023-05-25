@@ -82,6 +82,9 @@ public class HollisterSearchController implements DrisqController {
 	@FXML
 	private Label _colourLabel;
 
+	@FXML
+	private Label _hollisterLabel;
+
 	private boolean updateOnExit;
 
 	private Runnable runnable;
@@ -108,6 +111,7 @@ public class HollisterSearchController implements DrisqController {
 		_productTypeLabel.setFont(verdanaFont);
 		_sizeLabel.setFont(verdanaFont);
 		_colourLabel.setFont(verdanaFont);
+		_hollisterLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -219,6 +223,8 @@ public class HollisterSearchController implements DrisqController {
 		} else if (!maxPrice.isEmpty()) {
 			hollisterQuery += " AND Price <= '" + maxPrice + "'";
 		}
+
+		System.out.println(hollisterQuery);
 
 		Window owner = _rootNode.getScene().getWindow();
 		HollisterTableController controller = HollisterTableController.newInstance(owner, "Hollister Table");

@@ -17,7 +17,7 @@
       alignment="CENTER"
       prefHeight="1000.0"
       prefWidth="1000.0"
-      fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
+      fx:controller="com.drisq.minimalGraphicsProject.fx.JackWillsTableController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>
          <fx:reference source="controller"/>
@@ -53,7 +53,7 @@
             <TableColumn fx:id="_jackWillsProductDescriptionColumn"
                          prefWidth="333.0"
                          text="Product Description"/>
-            <TableColumn fx:id="_jackWIllsQuantityColumn"
+            <TableColumn fx:id="_jackWillsQuantityColumn"
                          minWidth="0.0"
                          prefWidth="333.0"
                          text="Qty"/>

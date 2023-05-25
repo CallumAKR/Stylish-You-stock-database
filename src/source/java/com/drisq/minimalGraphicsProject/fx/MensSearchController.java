@@ -22,8 +22,8 @@ public class MensSearchController implements DrisqController {
 	public static final String FXML_RSC = "rsc/MensSearch.fxml";
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shorts", "Sweatshirts", "Tracksuit Bottoms",
-			"Tracksuits", "Trousers", "T-Shirts");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
@@ -95,6 +95,15 @@ public class MensSearchController implements DrisqController {
 		_brandChoiceBox.setValue("Any");
 		_brandChoiceBox.setItems(brandType);
 
+		_productChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.equals("Shoes")) {
+				_sizeChoiceBox.setItems(shoeSizeType);
+			} else {
+				_sizeChoiceBox.setItems(sizeType);
+			}
+			_sizeChoiceBox.setValue("Any");
+		});
+
 	}
 
 	public String getProductType(ActionEvent event) {
@@ -140,7 +149,7 @@ public class MensSearchController implements DrisqController {
 		ActionEvent sizeSelection = null;
 		String sizeQuery = "= '" + getSizeType(sizeSelection) + "'";
 		if (sizeQuery.equals(anyCheck)) {
-			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL')";
+			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '12', '13')";
 
 		}
 
@@ -160,7 +169,9 @@ public class MensSearchController implements DrisqController {
 
 		String mensQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] "
 				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Brands " + brandsQuery
-				+ "AND Gender = 'Male'");
+				+ "AND Gender = 'Mens'");
+
+		System.out.println(mensQuery);
 
 		Window owner = _rootNode.getScene().getWindow();
 		MensTableController controller = MensTableController.newInstance(owner, "Mens Table");

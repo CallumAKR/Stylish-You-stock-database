@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" alignment="CENTER" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
+<VBox fx:id="_rootNode" alignment="CENTER" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.HollisterTableController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -30,7 +30,7 @@
       </HBox>
       <TableView fx:id="_hollisterTable" prefHeight="1000.0" prefWidth="1000.0">
         <columns>
-          <TableColumn fx:id="_hollisterDescriptionColumn" prefWidth="333.0" text="Product Description" />
+          <TableColumn fx:id="_hollisterProductDescriptionColumn" prefWidth="333.0" text="Product Description" />
           <TableColumn fx:id="_hollisterQuantityColumn" minWidth="0.0" prefWidth="333.0" text="Qty" />
             <TableColumn fx:id="_hollisterAvailableColumn" minWidth="0.0" prefWidth="333.0" text="Available" />
         </columns>

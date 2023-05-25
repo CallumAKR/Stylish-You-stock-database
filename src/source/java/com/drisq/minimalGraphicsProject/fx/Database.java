@@ -122,19 +122,53 @@ public class Database {
 
 	}
 
-	public static ResultSet brandsQuery(String brandsQuery) {
+	public static ResultSet zaraQuery(String zaraQuery) {
 
 		try {
 			connection = getConnection();
 
-			PreparedStatement statement = connection.prepareStatement(brandsQuery);
+			PreparedStatement statement = connection.prepareStatement(zaraQuery);
 
 			ResultSet testSet = statement.executeQuery();
 
 			return testSet;
 
 		} catch (SQLException e) {
-			throw new InternalError("Cannot execute queries : " + brandsQuery);
+			throw new InternalError("Cannot execute queries : " + zaraQuery);
+		}
+
+	}
+
+	public static ResultSet jackWillsQuery(String jackWillsQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(jackWillsQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + jackWillsQuery);
+		}
+
+	}
+
+	public static ResultSet hollisterQuery(String hollisterQuery) {
+
+		try {
+			connection = getConnection();
+
+			PreparedStatement statement = connection.prepareStatement(hollisterQuery);
+
+			ResultSet testSet = statement.executeQuery();
+
+			return testSet;
+
+		} catch (SQLException e) {
+			throw new InternalError("Cannot execute queries : " + hollisterQuery);
 		}
 
 	}

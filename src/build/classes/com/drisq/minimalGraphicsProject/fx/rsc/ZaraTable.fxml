@@ -17,7 +17,7 @@
       alignment="CENTER"
       prefHeight="1000.0"
       prefWidth="1000.0"
-      fx:controller="com.drisq.minimalGraphicsProject.fx.MensTableController">
+      fx:controller="com.drisq.minimalGraphicsProject.fx.ZaraTableController">
    <properties xmlns="http://javafx.com/javafx/8">
       <controller>
          <fx:reference source="controller"/>
@@ -50,7 +50,7 @@
       </HBox>
       <TableView fx:id="_zaraTable" prefHeight="1000.0" prefWidth="1000.0">
         <columns>
-            <TableColumn fx:id="_zaraDescriptionColumn"
+            <TableColumn fx:id="_zaraProductDescriptionColumn"
                          prefWidth="333.0"
                          text="Product Description"/>
             <TableColumn fx:id="_zaraQuantityColumn"

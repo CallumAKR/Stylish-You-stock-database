@@ -1,5 +1,7 @@
 package com.drisq.minimalGraphicsProject.fx;
 
+import java.sql.SQLException;
+
 import com.drisq.util.fx.DrisqController;
 import com.drisq.util.fx.FxUtil;
 
@@ -24,6 +26,10 @@ public class ZaraSearchController implements DrisqController {
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
 			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
 			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts");
+
+	ObservableList<String> productWomensType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
+			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts", "Dresses and Skirts", "Leggings and Tights");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
@@ -58,12 +64,17 @@ public class ZaraSearchController implements DrisqController {
 	private Button _homeButton;
 
 	@FXML
+	private Button _backButton;
+
+	@FXML
 	private Button _findButton;
 
 	@FXML
 	private Label Label;
 
 	private boolean updateOnExit;
+
+	private Runnable runnable;
 
 	public static ZaraSearchController newInstance(Window owner, String title) {
 		Stage stage = FxUtil.newStage(owner, FXML_RSC, ZaraSearchController.class, title);
@@ -89,6 +100,28 @@ public class ZaraSearchController implements DrisqController {
 
 		_genderChoiceBox.setValue("Any");
 		_genderChoiceBox.setItems(genderType);
+
+		_genderChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.equals("Girls")) {
+				_productChoiceBox.setItems(productWomensType);
+			} else if (newValue.equals("Ladies")) {
+				_productChoiceBox.setItems(productWomensType);
+			}
+
+			else {
+				_productChoiceBox.setItems(productType);
+			}
+			_productChoiceBox.setValue("Any");
+		});
+
+		_productChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.equals("Shoes")) {
+				_sizeChoiceBox.setItems(shoeSizeType);
+			} else {
+				_sizeChoiceBox.setItems(sizeType);
+			}
+			_sizeChoiceBox.setValue("Any");
+		});
 
 	}
 
@@ -117,30 +150,70 @@ public class ZaraSearchController implements DrisqController {
 	}
 
 	@FXML
-	private void _launchFindButton() {
-
+	private String _launchFindButton() {
 		getProductType(null);
 		getSizeType(null);
 		getColourType(null);
 		getGenderType(null);
 
+		String anyCheck = "= 'Any'";
+
 		ActionEvent productSelection = null;
-		String productQuery = getProductType(productSelection);
+		String productQuery = "= '" + getProductType(productSelection) + "'";
+		if (productQuery.equals(anyCheck)) {
+			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
+		}
 
 		ActionEvent sizeSelection = null;
-		String sizeQuery = getSizeType(sizeSelection);
+		String sizeQuery = "= '" + getSizeType(sizeSelection) + "'";
+		if (sizeQuery.equals(anyCheck)) {
+			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '12', '13')";
+
+		}
 
 		ActionEvent colourSelection = null;
-		String colourQuery = getColourType(colourSelection);
+		String colourQuery = "= '" + getColourType(colourSelection) + "'";
+		if (colourQuery.equals(anyCheck)) {
+			colourQuery = "IN ('Beige', 'Black', 'Blue', 'Green', 'Grey', 'Multi', 'Orange', 'Pink', 'Purple', 'Red', 'Silver', 'White')";
+
+		}
 
 		ActionEvent genderSelection = null;
-		String genderQuery = getGenderType(genderSelection);
+		String genderQuery = "= '" + getGenderType(genderSelection) + "'";
+		if (genderQuery.equals(anyCheck)) {
+			genderQuery = "IN ('Mens', 'Ladies', 'Boys', 'Girls')";
 
-		String Query = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] = "
-				+ productQuery + " AND Sizes = " + sizeQuery + " AND Colour = " + colourQuery + " AND Brands = "
-				+ genderQuery);
+		}
 
-		System.out.println("here: " + Query);
+		String zaraQuery = ("SELECT [Product Description], Quantity, Available FROM OurProducts WHERE [Product Type] "
+				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Gender " + genderQuery
+				+ "AND Brands = 'Zara'");
+
+		System.out.println(zaraQuery);
+
+		Window owner = _rootNode.getScene().getWindow();
+		ZaraTableController controller = ZaraTableController.newInstance(owner, "Zara Table");
+		try {
+			controller.initZaraTable(zaraQuery);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				_launchHomeButton();
+
+			}
+		};
+		controller.initRunnable(runnable);
+		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
+		if (controller.updateOnExit()) {
+
+		}
+
+		return zaraQuery;
 
 	}
 
@@ -149,8 +222,21 @@ public class ZaraSearchController implements DrisqController {
 	}
 
 	@FXML
+	protected final void _launchBackButton() {
+		updateOnExit = false;
+		done();
+	}
+
+	public void initRunnable(Runnable runnable) {
+		this.runnable = runnable;
+
+	}
+
+	@FXML
 	protected final void _launchHomeButton() {
 		updateOnExit = false;
+		runnable.run();
+
 		done();
 	}
 

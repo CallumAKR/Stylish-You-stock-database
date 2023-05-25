@@ -104,8 +104,13 @@
       <Button fx:id="_findButton"
               mnemonicParsing="false"
               onAction="#_launchFindButton"
-              text="FInd"
+              text="Find"
               VBox.vgrow="ALWAYS"/>
+      <Separator opacity="0.0" prefWidth="200.0"/>
+      <Button fx:id="_backButton"
+              mnemonicParsing="false"
+              onAction="#_launchBackButton"
+              text="Back"/>
       <Separator opacity="0.0" prefWidth="200.0"/>
       <Button fx:id="_homeButton"
               mnemonicParsing="false"

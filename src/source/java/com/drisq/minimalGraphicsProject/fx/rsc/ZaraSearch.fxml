@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="_rootNode" alignment="CENTER"  prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.ZaraSearchController">
+<VBox fx:id="_rootNode" alignment="CENTER" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.drisq.minimalGraphicsProject.fx.ZaraSearchController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -60,7 +60,9 @@
             <TextField fx:id="_maxPriceTestField" promptText="Price Max" />
          </children>
       </HBox>
-      <Button fx:id="_findButton" mnemonicParsing="false" onAction="#_launchFindButton" text="FInd" VBox.vgrow="ALWAYS" />
+      <Button fx:id="_findButton" mnemonicParsing="false" onAction="#_launchFindButton" text="Find" VBox.vgrow="ALWAYS" />
+      <Separator opacity="0.0" prefWidth="200.0" />
+      <Button fx:id="_backButton" mnemonicParsing="false" onAction="#_launchBackButton" text="Back" />
       <Separator opacity="0.0" prefWidth="200.0" />
       <Button fx:id="_homeButton" mnemonicParsing="false" onAction="#_launchHomeButton" text="Home" VBox.vgrow="ALWAYS" />
       <Separator opacity="0.0" prefWidth="200.0" />

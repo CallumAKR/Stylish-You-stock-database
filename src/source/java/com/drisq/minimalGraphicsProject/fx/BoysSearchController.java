@@ -95,6 +95,15 @@ public class BoysSearchController implements DrisqController {
 		_brandChoiceBox.setValue("Any");
 		_brandChoiceBox.setItems(brandType);
 
+		_productChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue.equals("Shoes")) {
+				_sizeChoiceBox.setItems(shoeSizeType);
+			} else {
+				_sizeChoiceBox.setItems(sizeType);
+			}
+			_sizeChoiceBox.setValue("Any");
+		});
+
 	}
 
 	public String getProductType(ActionEvent event) {
@@ -139,7 +148,7 @@ public class BoysSearchController implements DrisqController {
 		ActionEvent sizeSelection = null;
 		String sizeQuery = "= '" + getSizeType(sizeSelection) + "'";
 		if (sizeQuery.equals(anyCheck)) {
-			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL')";
+			sizeQuery = "IN ('S', 'M', 'L', 'XL', 'XXL', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10.5', '11', '12', '13')";
 
 		}
 

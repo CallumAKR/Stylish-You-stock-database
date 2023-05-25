@@ -47,6 +47,15 @@ public class BrandsSelectController implements DrisqController {
 
 		Window owner = _rootNode.getScene().getWindow();
 		JackWillsSearchController controller = JackWillsSearchController.newInstance(owner, "Jack Wills Search");
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				done();
+
+			}
+		};
+		controller.initRunnable(runnable);
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 
@@ -58,6 +67,15 @@ public class BrandsSelectController implements DrisqController {
 
 		Window owner = _rootNode.getScene().getWindow();
 		HollisterSearchController controller = HollisterSearchController.newInstance(owner, "Hollister Search");
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				done();
+
+			}
+		};
+		controller.initRunnable(runnable);
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 
@@ -69,6 +87,15 @@ public class BrandsSelectController implements DrisqController {
 
 		Window owner = _rootNode.getScene().getWindow();
 		ZaraSearchController controller = ZaraSearchController.newInstance(owner, "Zara Search");
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				done();
+
+			}
+		};
+		controller.initRunnable(runnable);
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 

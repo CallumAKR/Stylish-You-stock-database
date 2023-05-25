@@ -130,6 +130,8 @@ public class ZaraSearchController implements DrisqController {
 				_productChoiceBox.setItems(productWomensType);
 			} else if (newValue.equals("Ladies")) {
 				_productChoiceBox.setItems(productWomensType);
+			} else if (newValue.equals("Any")) {
+				_productChoiceBox.setItems(productWomensType);
 			}
 
 			else {
@@ -185,7 +187,7 @@ public class ZaraSearchController implements DrisqController {
 		ActionEvent productSelection = null;
 		String productQuery = "= '" + getProductType(productSelection) + "'";
 		if (productQuery.equals(anyCheck)) {
-			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
+			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts', 'Dresses and Skirts', 'Leggings and Tights')";
 		}
 
 		ActionEvent sizeSelection = null;

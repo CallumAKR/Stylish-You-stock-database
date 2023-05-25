@@ -132,9 +132,9 @@ public class ProductTypeSearchController implements DrisqController {
 				_productTypeChoiceBox.setItems(productWomensType);
 			} else if (newValue.equals("Ladies")) {
 				_productTypeChoiceBox.setItems(productWomensType);
-			}
-
-			else {
+			} else if (newValue.equals("Any")) {
+				_productTypeChoiceBox.setItems(productWomensType);
+			} else {
 				_productTypeChoiceBox.setItems(productType);
 			}
 			_productTypeChoiceBox.setValue("Any");
@@ -203,7 +203,7 @@ public class ProductTypeSearchController implements DrisqController {
 		ActionEvent productSelection = null;
 		String productQuery = "= '" + getProductType(productSelection) + "'";
 		if (productQuery.equals(anyCheck)) {
-			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
+			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts', 'Dresses and Skirts', 'Leggings and Tights')";
 		}
 
 		ActionEvent sizeSelection = null;

@@ -1,0 +1,5 @@
+When using the Jack Wills, Hollister, Zara or Product Type search controllers.
+ The gender drop down selected on any should change the prouct drop down to
+include Dresses and Skirts as well as Leggings and Tights, however it only
+does so if you select another option first and then select Any after
+

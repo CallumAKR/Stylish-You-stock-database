@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -24,12 +25,12 @@ public class JackWillsSearchController implements DrisqController {
 	ObservableList<String> genderType = FXCollections.observableArrayList("Any", "Mens", "Ladies", "Boys", "Girls");
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
-			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts");
 
 	ObservableList<String> productWomensType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
-			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts", "Dresses and Skirts", "Leggings and Tights");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts", "Dresses and Skirts", "Leggings and Tights");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
@@ -70,7 +71,16 @@ public class JackWillsSearchController implements DrisqController {
 	private Button _findButton;
 
 	@FXML
-	private Label Label;
+	private Label _genderLabel;
+
+	@FXML
+	private Label _productTypeLabel;
+
+	@FXML
+	private Label _sizeLabel;
+
+	@FXML
+	private Label _colourLabel;
 
 	private boolean updateOnExit;
 
@@ -88,6 +98,16 @@ public class JackWillsSearchController implements DrisqController {
 
 	@FXML
 	private void initialize() {
+
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_backButton.setFont(verdanaFont);
+		_findButton.setFont(verdanaFont);
+		_genderLabel.setFont(verdanaFont);
+		_productTypeLabel.setFont(verdanaFont);
+		_sizeLabel.setFont(verdanaFont);
+		_colourLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -185,11 +205,20 @@ public class JackWillsSearchController implements DrisqController {
 
 		}
 
+		String minPrice = _minPriceTextField.getText();
+		String maxPrice = _maxPriceTextField.getText();
+
 		String jackWillsQuery = ("SELECT [Product Description], Quantity, Available FROM OurProducts WHERE [Product Type] "
 				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Gender " + genderQuery
 				+ "AND Brands = 'Jack Wills'");
 
-		System.out.println(jackWillsQuery);
+		if (!minPrice.isEmpty() && !maxPrice.isEmpty()) {
+			jackWillsQuery += " AND Price BETWEEN '" + minPrice + "' AND '" + maxPrice + "'";
+		} else if (!minPrice.isEmpty()) {
+			jackWillsQuery += " AND Price >= '" + minPrice + "'";
+		} else if (!maxPrice.isEmpty()) {
+			jackWillsQuery += " AND Price <= '" + maxPrice + "'";
+		}
 
 		Window owner = _rootNode.getScene().getWindow();
 		JackWillsTableController controller = JackWillsTableController.newInstance(owner, "Jack Wills Table");

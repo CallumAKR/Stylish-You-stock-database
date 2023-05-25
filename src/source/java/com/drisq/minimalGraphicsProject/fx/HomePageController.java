@@ -6,6 +6,7 @@ import com.drisq.util.fx.FxUtil;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -47,6 +48,24 @@ public class HomePageController implements DrisqController {
 	public Node getRootNode() {
 		return _rootNode;
 	}
+
+	@FXML
+	private void initialize() {
+
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homePageExitButton.setFont(verdanaFont);
+		_mensButton.setFont(verdanaFont);
+		_womensButton.setFont(verdanaFont);
+		_boysButton.setFont(verdanaFont);
+		_girlsButton.setFont(verdanaFont);
+		_brandsButton.setFont(verdanaFont);
+		_productTypeButton.setFont(verdanaFont);
+
+	}
+
+	// _launchButtons open a new instance of another controller with a diffferent
+	// fxml file, each one launching a different controller and file
 
 	@FXML
 	private void _launchMensButton() {

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -60,13 +61,19 @@ public class BoysSearchController implements DrisqController {
 	private Button _homeButton;
 
 	@FXML
-	private Label _testLabel;
-
-	@FXML
 	private Button _findButton;
 
 	@FXML
-	private Label Label;
+	private Label _productTypeLabel;
+
+	@FXML
+	private Label _sizeLabel;
+
+	@FXML
+	private Label _colourLabel;
+
+	@FXML
+	private Label _brandLabel;
 
 	private boolean updateOnExit;
 
@@ -82,6 +89,15 @@ public class BoysSearchController implements DrisqController {
 
 	@FXML
 	private void initialize() {
+
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_findButton.setFont(verdanaFont);
+		_productTypeLabel.setFont(verdanaFont);
+		_sizeLabel.setFont(verdanaFont);
+		_colourLabel.setFont(verdanaFont);
+		_brandLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -166,9 +182,20 @@ public class BoysSearchController implements DrisqController {
 
 		}
 
+		String minPrice = _minPriceTextField.getText();
+		String maxPrice = _maxPriceTextField.getText();
+
 		String boysQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] "
 				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Brands " + brandsQuery
 				+ "AND Gender = 'Boys'");
+
+		if (!minPrice.isEmpty() && !maxPrice.isEmpty()) {
+			boysQuery += " AND Price BETWEEN '" + minPrice + "' AND '" + maxPrice + "'";
+		} else if (!minPrice.isEmpty()) {
+			boysQuery += " AND Price >= '" + minPrice + "'";
+		} else if (!maxPrice.isEmpty()) {
+			boysQuery += " AND Price <= '" + maxPrice + "'";
+		}
 
 		Window owner = _rootNode.getScene().getWindow();
 		BoysTableController controller = BoysTableController.newInstance(owner, "Boys Table");

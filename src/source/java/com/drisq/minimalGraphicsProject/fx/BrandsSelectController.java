@@ -6,6 +6,7 @@ import com.drisq.util.fx.FxUtil;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -14,9 +15,6 @@ public class BrandsSelectController implements DrisqController {
 
 	@FXML
 	private Node _rootNode;
-
-	@FXML
-	private Button _homePageExitButton;
 
 	@FXML
 	private Button _jackWillsButton;
@@ -40,6 +38,17 @@ public class BrandsSelectController implements DrisqController {
 	@Override
 	public Node getRootNode() {
 		return _rootNode;
+	}
+
+	@FXML
+	private void initialize() {
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_jackWillsButton.setFont(verdanaFont);
+		_zaraButton.setFont(verdanaFont);
+		_hollisterButton.setFont(verdanaFont);
+
 	}
 
 	@FXML

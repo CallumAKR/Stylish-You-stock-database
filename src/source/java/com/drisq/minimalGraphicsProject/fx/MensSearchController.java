@@ -14,12 +14,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class MensSearchController implements DrisqController {
 
 	public static final String FXML_RSC = "rsc/MensSearch.fxml";
+
+	// creates a list to populate the choice boxes
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
 			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
@@ -60,13 +63,19 @@ public class MensSearchController implements DrisqController {
 	private Button _homeButton;
 
 	@FXML
-	private Label _testLabel;
-
-	@FXML
 	private Button _findButton;
 
 	@FXML
-	private Label Label;
+	private Label _productTypeLabel;
+
+	@FXML
+	private Label _sizeLabel;
+
+	@FXML
+	private Label _colourLabel;
+
+	@FXML
+	private Label _brandLabel;
 
 	private boolean updateOnExit;
 
@@ -83,6 +92,17 @@ public class MensSearchController implements DrisqController {
 	@FXML
 	private void initialize() {
 
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_findButton.setFont(verdanaFont);
+		_productTypeLabel.setFont(verdanaFont);
+		_sizeLabel.setFont(verdanaFont);
+		_colourLabel.setFont(verdanaFont);
+		_brandLabel.setFont(verdanaFont);
+
+		// sets the default choice box value as any and populates it with the given list
+
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
 
@@ -95,6 +115,9 @@ public class MensSearchController implements DrisqController {
 		_brandChoiceBox.setValue("Any");
 		_brandChoiceBox.setItems(brandType);
 
+		// listener to see if the product choice box has the values of "Shoes", if so
+		// then change what list populates the size choice box
+
 		_productChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			if (newValue.equals("Shoes")) {
 				_sizeChoiceBox.setItems(shoeSizeType);
@@ -105,6 +128,8 @@ public class MensSearchController implements DrisqController {
 		});
 
 	}
+
+	// Gets the values of the selected option of each choice box as a string
 
 	public String getProductType(ActionEvent event) {
 
@@ -130,8 +155,9 @@ public class MensSearchController implements DrisqController {
 		return brandSelection;
 	}
 
+	// Starts the event when the _findButton is pressed
 	@FXML
-	private String _launchFindButton() {
+	private void _launchFindButton(ActionEvent event) {
 
 		getProductType(null);
 		getSizeType(null);
@@ -140,8 +166,15 @@ public class MensSearchController implements DrisqController {
 
 		String anyCheck = "= 'Any'";
 
+		// Creates a string equal to the selected choice box value plus some ' for the
+		// SQLite query
+
 		ActionEvent productSelection = null;
 		String productQuery = "= '" + getProductType(productSelection) + "'";
+
+		// Checks if the selection is Any then is changes the string to the following to
+		// include any value in that relevant group
+
 		if (productQuery.equals(anyCheck)) {
 			productQuery = "IN ('Fleeces', 'Hoodies', 'Jackets and Coats', 'Jeans', 'Polo Shirts', 'Shirts', 'Shoes', 'Shorts', 'Sweatshirts', 'Tracksuit Bottoms', 'Tracksuits', 'Trousers', 'T-Shirts')";
 		}
@@ -167,11 +200,30 @@ public class MensSearchController implements DrisqController {
 
 		}
 
+		// gets the inputed text from the text fields
+
+		String minPrice = _minPriceTextField.getText();
+		String maxPrice = _maxPriceTextField.getText();
+
+		// Creates a string to use as the SQLite query using the strings made from the
+		// selected items from the choices boxes
+
 		String mensQuery = ("SELECT [Product Description], Brands, Quantity, Available FROM OurProducts WHERE [Product Type] "
 				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Brands " + brandsQuery
 				+ "AND Gender = 'Mens'");
 
-		System.out.println(mensQuery);
+		// adds to the query string depending on the values gotten from the text boxes
+		// and if they have a value given
+
+		if (!minPrice.isEmpty() && !maxPrice.isEmpty()) {
+			mensQuery += " AND Price BETWEEN '" + minPrice + "' AND '" + maxPrice + "'";
+		} else if (!minPrice.isEmpty()) {
+			mensQuery += " AND Price >= '" + minPrice + "'";
+		} else if (!maxPrice.isEmpty()) {
+			mensQuery += " AND Price <= '" + maxPrice + "'";
+		}
+
+		// opens the Table controller
 
 		Window owner = _rootNode.getScene().getWindow();
 		MensTableController controller = MensTableController.newInstance(owner, "Mens Table");
@@ -189,13 +241,14 @@ public class MensSearchController implements DrisqController {
 
 			}
 		};
+		// Uses the runnable to close this instance from the table instance to work as a
+		// home button and go all the way back
+
 		controller.initRunnable(runnable);
 		((Stage) controller.getRootNode().getScene().getWindow()).showAndWait();
 		if (controller.updateOnExit()) {
 
 		}
-
-		return mensQuery;
 
 	}
 
@@ -209,6 +262,8 @@ public class MensSearchController implements DrisqController {
 
 		done();
 	}
+
+	// closes the instance
 
 	private void done() {
 		((Stage) (_rootNode.getScene().getWindow())).close();

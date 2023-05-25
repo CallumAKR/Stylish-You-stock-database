@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -58,6 +59,11 @@ public class BoysTableController implements DrisqController {
 
 	@FXML
 	private void initialize() throws SQLException {
+
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_backButton.setFont(verdanaFont);
 
 	}
 

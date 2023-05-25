@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -70,7 +71,16 @@ public class ZaraSearchController implements DrisqController {
 	private Button _findButton;
 
 	@FXML
-	private Label Label;
+	private Label _genderLabel;
+
+	@FXML
+	private Label _productTypeLabel;
+
+	@FXML
+	private Label _sizeLabel;
+
+	@FXML
+	private Label _colourLabel;
 
 	private boolean updateOnExit;
 
@@ -88,6 +98,16 @@ public class ZaraSearchController implements DrisqController {
 
 	@FXML
 	private void initialize() {
+
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_homeButton.setFont(verdanaFont);
+		_backButton.setFont(verdanaFont);
+		_findButton.setFont(verdanaFont);
+		_genderLabel.setFont(verdanaFont);
+		_productTypeLabel.setFont(verdanaFont);
+		_sizeLabel.setFont(verdanaFont);
+		_colourLabel.setFont(verdanaFont);
 
 		_productChoiceBox.setValue("Any");
 		_productChoiceBox.setItems(productType);
@@ -185,11 +205,20 @@ public class ZaraSearchController implements DrisqController {
 
 		}
 
+		String minPrice = _minPriceTextField.getText();
+		String maxPrice = _maxPriceTextField.getText();
+
 		String zaraQuery = ("SELECT [Product Description], Quantity, Available FROM OurProducts WHERE [Product Type] "
 				+ productQuery + " AND Sizes " + sizeQuery + " AND Colour " + colourQuery + "AND Gender " + genderQuery
 				+ "AND Brands = 'Zara'");
 
-		System.out.println(zaraQuery);
+		if (!minPrice.isEmpty() && !maxPrice.isEmpty()) {
+			zaraQuery += " AND Price BETWEEN '" + minPrice + "' AND '" + maxPrice + "'";
+		} else if (!minPrice.isEmpty()) {
+			zaraQuery += " AND Price >= '" + minPrice + "'";
+		} else if (!maxPrice.isEmpty()) {
+			zaraQuery += " AND Price <= '" + maxPrice + "'";
+		}
 
 		Window owner = _rootNode.getScene().getWindow();
 		ZaraTableController controller = ZaraTableController.newInstance(owner, "Zara Table");

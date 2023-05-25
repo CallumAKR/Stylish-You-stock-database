@@ -39,8 +39,11 @@ public class IncorrectPasswordController implements DrisqController {
 	@FXML
 	private void initialize() {
 
-		_incorrectPassowordLabel.setFont(new Font("Verdana", 13));
-		_okButton.setFont(new Font("Verdana", 13));
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_incorrectPassowordLabel.setFont(verdanaFont);
+		_okButton.setFont(verdanaFont);
+
 	}
 
 	public boolean updateOnExit() {

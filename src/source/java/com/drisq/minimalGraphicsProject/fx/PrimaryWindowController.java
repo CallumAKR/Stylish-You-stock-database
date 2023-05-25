@@ -30,8 +30,10 @@ public class PrimaryWindowController {
 	@FXML
 	private void initialize() {
 //Sets the fonts to be the required Verdana
-		_passwordLabel.setFont(new Font("Verdana", 13));
-		_enterPasswordButton.setFont(new Font("Verdana", 13));
+		Font verdanaFont = new Font("Verdana", 13);
+
+		_passwordLabel.setFont(verdanaFont);
+		_enterPasswordButton.setFont(verdanaFont);
 
 	}
 

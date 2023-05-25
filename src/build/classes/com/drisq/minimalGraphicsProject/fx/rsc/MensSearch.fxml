@@ -41,7 +41,7 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="_testLabel"
+            <Label fx:id="_productTypeLabel"
                    alignment="CENTER_RIGHT"
                    prefWidth="100.0"
                    text="Product Type:"/>
@@ -58,7 +58,10 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Size:"/>
+            <Label fx:id="_sizeLabel"
+                   alignment="CENTER_RIGHT"
+                   prefWidth="100.0"
+                   text="Size:"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
             <ChoiceBox fx:id="_sizeChoiceBox" prefWidth="150.0"/>
             <Separator opacity="0.0"
@@ -72,7 +75,10 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Colour:"/>
+            <Label fx:id="_colourLabel"
+                   alignment="CENTER_RIGHT"
+                   prefWidth="100.0"
+                   text="Colour:"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
             <ChoiceBox fx:id="_colourChoiceBox" prefWidth="150.0"/>
             <Separator opacity="0.0"
@@ -86,9 +92,9 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="_minPriceTextField" promptText="Price Min" text="1"/>
+            <TextField fx:id="_minPriceTextField" promptText="Price Min"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
-            <TextField fx:id="_maxPriceTestField" promptText="Price Max" text="100"/>
+            <TextField fx:id="_maxPriceTextField" promptText="Price Max"/>
          </children>
       </HBox>
       <HBox alignment="CENTER"
@@ -96,7 +102,10 @@
             prefWidth="200.0"
             VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Brand:"/>
+            <Label fx:id="_brandLabel"
+                   alignment="CENTER_RIGHT"
+                   prefWidth="100.0"
+                   text="Brand:"/>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0"/>
             <ChoiceBox fx:id="_brandChoiceBox" prefWidth="150.0"/>
             <Separator opacity="0.0"

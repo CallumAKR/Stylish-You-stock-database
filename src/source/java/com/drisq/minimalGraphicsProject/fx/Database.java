@@ -14,11 +14,8 @@ public class Database {
 
 	private static Connection connection;
 
-	/**
-	 * Gets a connection to the software update database
-	 * 
-	 * @return The connection to the software update database
-	 */
+	// Connects to the database
+
 	public static Connection getConnection() {
 		File installDir = getInstallDir();
 		File dbFile = new File(installDir, "db/OurProducts.sqlite");
@@ -54,18 +51,30 @@ public class Database {
 
 	}
 
+	// creates a result set using the stated query
+
 	public static ResultSet mensQuery(String mensQuery) {
 
 		try {
+			// connects
+
 			connection = getConnection();
+
+			// creates a statement of the query string
 
 			PreparedStatement statement = connection.prepareStatement(mensQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			// creates a result set equal to the executed query results
 
-			return testSet;
+			ResultSet mensSet = statement.executeQuery();
 
-		} catch (SQLException e) {
+			return mensSet;
+
+		}
+
+		// a catch if the query has an error
+
+		catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + mensQuery);
 		}
 
@@ -78,9 +87,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(womensQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet womensSet = statement.executeQuery();
 
-			return testSet;
+			return womensSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + womensQuery);
@@ -95,9 +104,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(boysQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet boysSet = statement.executeQuery();
 
-			return testSet;
+			return boysSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + boysQuery);
@@ -112,9 +121,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(girlsQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet girlsSet = statement.executeQuery();
 
-			return testSet;
+			return girlsSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + girlsQuery);
@@ -129,9 +138,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(zaraQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet zaraSet = statement.executeQuery();
 
-			return testSet;
+			return zaraSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + zaraQuery);
@@ -146,9 +155,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(jackWillsQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet jackWillsSet = statement.executeQuery();
 
-			return testSet;
+			return jackWillsSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + jackWillsQuery);
@@ -163,9 +172,9 @@ public class Database {
 
 			PreparedStatement statement = connection.prepareStatement(hollisterQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet hollisterSet = statement.executeQuery();
 
-			return testSet;
+			return hollisterSet;
 
 		} catch (SQLException e) {
 			throw new InternalError("Cannot execute queries : " + hollisterQuery);
@@ -173,19 +182,19 @@ public class Database {
 
 	}
 
-	public static ResultSet productsQuery(String productsQuery) {
+	public static ResultSet productTypeQuery(String productTypeQuery) {
 
 		try {
 			connection = getConnection();
 
-			PreparedStatement statement = connection.prepareStatement(productsQuery);
+			PreparedStatement statement = connection.prepareStatement(productTypeQuery);
 
-			ResultSet testSet = statement.executeQuery();
+			ResultSet productTypeSet = statement.executeQuery();
 
-			return testSet;
+			return productTypeSet;
 
 		} catch (SQLException e) {
-			throw new InternalError("Cannot execute queries : " + productsQuery);
+			throw new InternalError("Cannot execute queries : " + productTypeQuery);
 		}
 
 	}

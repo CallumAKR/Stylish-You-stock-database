@@ -25,12 +25,12 @@ public class ZaraSearchController implements DrisqController {
 	ObservableList<String> genderType = FXCollections.observableArrayList("Any", "Mens", "Ladies", "Boys", "Girls");
 
 	ObservableList<String> productType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
-			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts");
 
 	ObservableList<String> productWomensType = FXCollections.observableArrayList("Any", "Fleeces", "Hoodies",
-			"Jackets and coats", "Jeans", "Polo shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
-			"Tracksuit bottoms", "Tracksuits", "Trousers", "T-Shirts", "Dresses and Skirts", "Leggings and Tights");
+			"Jackets and Coats", "Jeans", "Polo Shirts", "Shirts", "Shoes", "Shorts", "Sweatshirts",
+			"Tracksuit Bottoms", "Tracksuits", "Trousers", "T-Shirts", "Dresses and Skirts", "Leggings and Tights");
 
 	ObservableList<String> sizeType = FXCollections.observableArrayList("Any", "S", "M", "L", "XL", "XXL");
 
